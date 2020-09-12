@@ -2,7 +2,7 @@ import React,{Component} from "react";
 
 class Card extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       isActive: true,
     }
@@ -12,12 +12,13 @@ class Card extends Component {
       return {isActive: !state.isActive}
     })
   }
+
   render() {
     return (
-      <div onClick={this.handleActiveClick} className={this.state.isActive ? "item-active" : "item-unlock"}>
+      <div onClick={this.handleActiveClick} className={this.state.isActive ? "item-progress" : "item-active"}>
         <div className="title">{this.props.title}</div>
         <div className="subtitle">{this.props.subtitle}</div>
-        <div className="button-active"> </div>
+        <div onClick={this.handleActiveClick} className={this.state.isActive ? "button-disabled" : "button-active"}> </div>
       </div>
     )
   }

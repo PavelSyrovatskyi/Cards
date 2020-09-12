@@ -1,11 +1,36 @@
 import React from 'react';
-import Card from './Card.jsx';
+import Card from './Card.js';
+import Counter from './Counter.js';
 import './App.css';
 import logo1 from './img/menu-button.png';
 import logo2 from './img/thunder.svg';
 import logo3 from './img/user-2.svg';
 import Footer from "./Footer";
 import Header from "./Header";
+
+
+const cardList = [
+  {
+    id:1,
+    title: 'Introduction',
+    subtitle: 'Complete'
+  },
+  {
+    id:2,
+    title: 'The Jigsaw Test',
+    subtitle: '2 minutes'
+  },
+  {
+    id:3,
+    title: 'Set your objectives',
+    subtitle: '1 minute'
+  },
+  {
+    id:4,
+    title: 'Baseline Evaluation',
+    subtitle: '10 minutes'
+  }
+];
 
 const footerList = [
   {
@@ -24,7 +49,7 @@ const footerList = [
     logo: logo3
   }
 
-]
+];
 
 class App extends React.Component {
   constructor(props) {
@@ -33,48 +58,28 @@ class App extends React.Component {
       count: 0
     }
   }
-  handleCountChangeIncrement = () => {
-    this.setState((state) => {
-      return {count: state.count++}
-    })
-  }
-  handleCountChangeDecrement = () => {
 
-  }
+
 render() {
   return (
     <>
       <div className="App">
-        <button onClick={this.handleCountChangeIncrement}>{this.state.count}</button>
+        <Counter />
         <div className="main">
           <Header
             header={'Getting started'}
           />
 
           <div className="menu">
-            <Card
-              title={'Introduction'}
-              subtitle={'Complete'}
-              status={'active'}
-            />
-
-            <Card
-              title={'The Jigsaw Test'}
-              subtitle={'2 minutes'}
-              status={'active'}
-            />
-
-            <Card
-              title={'Set your objectives'}
-              subtitle={'1 minute'}
-              status={'progress'}
-            />
-            '
-            <Card
-              title={'Baseline Evaluation'}
-              subtitle={'10 minutes'}
-              status={'unlock'}
-            />
+            {cardList.map(item => {
+              return (
+                <Card
+                  key={item.id}
+                  title={item.title}
+                  subtitle={item.subtitle}
+                />
+              )
+            })}
 
           </div>
 
@@ -84,7 +89,7 @@ render() {
           {footerList.map((item) => {
             return (
               <Footer
-                id={item.id}
+                key={item.id}
                 logo={item.logo}
                 menu={item.menu}
               />
